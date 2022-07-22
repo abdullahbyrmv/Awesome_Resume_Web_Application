@@ -11,10 +11,10 @@ public class UserController extends HttpServlet {
     private UserInterface userDao = Context.instanceUserDao();
 
     @Override
-    protected void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException {
-        int id = Integer.valueOf(request.getParameter("id"));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        String surname  = request.getParameter("surname");
+        String surname = request.getParameter("surname");
 
         User user = userDao.getByID(id);
         user.setName(name);

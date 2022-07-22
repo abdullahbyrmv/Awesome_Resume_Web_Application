@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserInterface {
 
     public User getByID(int id);
-    public List<User> getAllInfo() throws SQLException;
+    public List<User> getAllInfo(String name, String surname, Integer nationalityId) throws SQLException;
 
     public boolean updateUser(User u);
 

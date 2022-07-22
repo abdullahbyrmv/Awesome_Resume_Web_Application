@@ -34,19 +34,50 @@ public class UserDaoImpl extends abstractDao implements UserInterface {
     }
 
     @Override
-    public List<User> getAllInfo() {
+    public List<User> getAllInfo(String name, String surname , Integer nationalityId) {
         List<User> list = new ArrayList<>();
         try (Connection a = connect()) {
-            Statement st = a.createStatement();
-            st.execute("select " +
-                    "   u.*, " +
-                    "   n.nationality_name, " +
-                    "   c.name as birthplace, " +
-                    " from user u " +
-                    " left join nationality n on u.nationality_id = n.id " +
-                    " left join country c on u.birthplace_id = c.id ");
-            ResultSet result = st.getResultSet();
+            String sql = "select " +
+                    "   user.*, " +
+                    "   nationality.nationality_name, " +
+                    "   country.name as birthplace " +
+                    " from user " +
+                    " left join nationality on user.nationality_id = nationality.id " +
+                    " left join country on user.birthplace_id = country.id where 1=1";
 
+            if(name != null && !name.trim().isEmpty()){
+                sql += " and user.name = ?";
+            }
+
+            if(surname != null && !surname.trim().isEmpty()){
+                sql += " and user.surname = ?";
+            }
+
+            if(nationalityId != null){
+                sql += " and user.nationality_id = ?";
+            }
+
+            PreparedStatement st = a.prepareStatement(sql);
+
+            int i = 1;
+
+            if(name != null && !name.trim().isEmpty()){
+                st.setString(i,name);
+                i++;
+            }
+
+            if(surname != null && !surname.trim().isEmpty()){
+                st.setString(i,surname);
+                i++;
+            }
+
+            if(nationalityId != null){
+                st.setInt(i,nationalityId);
+            }
+
+            st.execute();
+
+            ResultSet result = st.getResultSet();
             while (result.next()) {
                 User u = getUser(result);
                 list.add(u);
