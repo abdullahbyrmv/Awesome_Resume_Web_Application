@@ -7,6 +7,10 @@
 <html>
 <head>
     <title>Resume Web Application</title>
+    <link rel="stylesheet" href="assets/users.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
 <%
@@ -21,46 +25,63 @@
     List<User> list = userDao.getAllInfo(name, surname, nationalityId);
 %>
 
-<div>
-    <form action="users.jsp" method="GET">
-        <%--@declare id="surname"--%><%--@declare id="name"--%>
-        <label for="name">Name:</label>
-        <input type="text" name="name" value=""/>
-        <br/>
-        <br/>
-        <label for="surname">Surname:</label>
-        <input type="text" name="surname" value=""/>
-
-        <input type="submit" name="search" value="Search"/>
-    </form>
-</div>
-
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Nationality</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%
-            for (User u : list) {
-        %>
-        <tr>
-            <td><%=u.getName()%>
-            </td>
-            <td><%=u.getSurname()%>
-            </td>
-            <td><%=u.getNationality().getNationality_name() == null ? "N/A" : u.getNationality().getNationality_name()%>
-            </td>
-        </tr>
-        <%
-            }
-        %>
-        </tbody>
-    </table>
+<div class="container myContainer">
+    <div class="row">
+        <div class="col-4">
+            <form action="users.jsp" method="GET">
+                <%--@declare id="surname"--%><%--@declare id="name"--%>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input placeholder="Please Enter Name" class="form-control" type="text" name="name" value=""/>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname:</label>
+                    <input placeholder="Please Enter Surname" class="form-control" type="text" name="surname"
+                           value=""/>
+                </div>
+                <br>
+                <div>
+                    <input class="btn btn-primary" type="submit" name="search" value="Search"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Nationality</th>
+                <th>Operations</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                for (User u : list) {
+            %>
+            <tr>
+                <td><%=u.getName()%>
+                </td>
+                <td><%=u.getSurname()%>
+                </td>
+                <td><%=u.getNationality().getNationality_name() == null ? "N/A" : u.getNationality().getNationality_name()%>
+                </td>
+                <td>
+                    <button class="btn btn-secondary" type="submit" name="action" value="Update">
+                        <i class="update_delete_buttons fa-solid fa-square-pen"></i>
+                    </button>
+                    <button class="btn btn-danger" type="submit" name="action" value="Delete">
+                        <i class="update_delete_buttons fa-solid fa-trash-can"></i>
+                    </button>
+                </td>
+            </tr>
+            <%
+                }
+            %>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
