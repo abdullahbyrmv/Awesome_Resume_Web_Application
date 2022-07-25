@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Resume Web Application:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Resume Web Application</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Resume_Web_Application-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Resume Web Application:war exploded" />
+    </root>
+  </artifact>
+</component>
