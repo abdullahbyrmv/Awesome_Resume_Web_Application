@@ -1,0 +1,53 @@
+.myContainer div {
+    margin-bottom: 10px;
+}
+
+.control_panel {
+    border: 1px solid;
+}
+
+.control_panel input {
+    color: blue;
+    border: 1px solid;
+    padding: 5px;
+}
+
+.control_panel label {
+    width: 10%;
+    display: inline-block;
+}
+
+.control_panel_group {
+    margin-top: 2px;
+}
+
+.btn btn-primary {
+    color: white;
+}
+
+body {
+    font-size: 20px;
+}
+
+.update_delete_buttons {
+    border: 0px;
+    font-size: 25px;
+}
+
+.add_delete_table {
+    width: 5px;
+}
+
+.login_background{
+    background: url("https://www.hr.com/portals/hrcom/Page/images/Cover-photos/HRcom-HomeSplash.jpg") ;
+}
+
+.login_fix_{
+    background: #fffdfd40;
+    border: white;
+    padding-top: 172px;
+    font-style: italic;
+    color: aliceblue;
+    width: 500px;
+    height: 500px;
+}
